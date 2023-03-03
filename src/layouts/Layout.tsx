@@ -1,10 +1,10 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React from 'react'
+import { Outlet } from 'react-router-dom'
 
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from './Header'
+import Footer from './Footer'
 
-type LayoutProps = {};
+type LayoutProps = Record<string, never>
 
 const Layout: React.FC<LayoutProps> = () => {
   return (
@@ -15,7 +15,7 @@ const Layout: React.FC<LayoutProps> = () => {
       </main>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
