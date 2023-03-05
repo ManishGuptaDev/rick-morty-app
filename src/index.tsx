@@ -5,14 +5,18 @@ import { ApolloProvider } from '@apollo/client'
 import 'styles/global.css'
 import App from 'app/App'
 import reportWebVitals from './reportWebVitals'
-import { client } from './graphql';
+import { client } from './graphql'
+import { Provider } from 'react-redux'
+import store from 'store'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </Provider>
   </React.StrictMode>,
 )
 

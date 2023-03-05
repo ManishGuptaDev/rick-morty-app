@@ -1,10 +1,17 @@
 import { NavLink } from 'react-router-dom'
 import Button from '@mui/material/Button';
 
-import logo from 'assets/images/logo.jpg'
 import './Header.scss'
+import logo from 'assets/images/logo.jpg'
+import { useAppSelector } from 'store/hooks';
+
 
 const Header = () => {
+
+  const isloggedIn = useAppSelector(state => state.auth.isLoggedIn)
+
+  console.log(isloggedIn)
+
   return (
     <section className='page-header'>
       <img className='page-header__logo' src={logo} alt='Logo' />
