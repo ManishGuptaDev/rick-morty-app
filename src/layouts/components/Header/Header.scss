@@ -1,5 +1,6 @@
 @use "styles/colors.scss" as c;
 @use "styles/variables.scss" as v;
+@use "styles/mixins.scss" as m;
 
 .page-header {
   width: 100%;
@@ -12,14 +13,16 @@
     height: 80px;
     width: auto;
     border-radius: v.$border-radius-1;
+    @include m.clickable()
   }
 
   &__navigation {
     flex: 1;
+    margin-left: v.$margin-14;
     ul {
       display: flex;
-      gap: v.$margin-4;
-      justify-content: space-evenly;
+      gap: v.$margin-14;
+      justify-content: flex-start;
       li {
         a {
           text-decoration: none;

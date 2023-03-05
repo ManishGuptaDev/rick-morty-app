@@ -1,0 +1,13 @@
+@use "styles/variables.scss" as v;
+@use "styles/mixins.scss" as m;
+
+.character-card {
+  width: 100%;
+  padding: v.$padding-3;
+  & > * {
+    height: 100%
+  }
+  img {
+    object-fit: none;
+  }
+}

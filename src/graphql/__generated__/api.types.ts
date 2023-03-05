@@ -207,7 +207,15 @@ export type GetCharactersQueryVariables = Exact<{
 }>;
 
 
-export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', count?: number | null, pages?: number | null, next?: number | null, prev?: number | null } | null, results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, status?: string | null } | null> | null } | null };
+export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', count?: number | null, pages?: number | null, next?: number | null, prev?: number | null } | null, results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, status?: string | null, image?: string | null, gender?: string | null, type?: string | null, species?: string | null } | null> | null } | null };
+
+export type GetEpisodesQueryVariables = Exact<{
+  page?: InputMaybe<Scalars['Int']>;
+  filter?: InputMaybe<FilterEpisode>;
+}>;
+
+
+export type GetEpisodesQuery = { __typename?: 'Query', episodes?: { __typename?: 'Episodes', info?: { __typename?: 'Info', count?: number | null, pages?: number | null, next?: number | null, prev?: number | null } | null, results?: Array<{ __typename?: 'Episode', id?: string | null, name?: string | null, air_date?: string | null, episode?: string | null, created?: string | null } | null> | null } | null };
 
 
 export const GetCharactersDocument = gql`
@@ -224,6 +232,10 @@ export const GetCharactersDocument = gql`
       name
       status
       name
+      image
+      gender
+      type
+      species
     }
   }
 }
@@ -257,3 +269,51 @@ export function useGetCharactersLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetCharactersQueryHookResult = ReturnType<typeof useGetCharactersQuery>;
 export type GetCharactersLazyQueryHookResult = ReturnType<typeof useGetCharactersLazyQuery>;
 export type GetCharactersQueryResult = Apollo.QueryResult<GetCharactersQuery, GetCharactersQueryVariables>;
+export const GetEpisodesDocument = gql`
+    query GetEpisodes($page: Int, $filter: FilterEpisode) {
+  episodes(page: $page, filter: $filter) {
+    info {
+      count
+      pages
+      next
+      prev
+    }
+    results {
+      id
+      name
+      air_date
+      episode
+      created
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetEpisodesQuery__
+ *
+ * To run a query within a React component, call `useGetEpisodesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetEpisodesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetEpisodesQuery({
+ *   variables: {
+ *      page: // value for 'page'
+ *      filter: // value for 'filter'
+ *   },
+ * });
+ */
+export function useGetEpisodesQuery(baseOptions?: Apollo.QueryHookOptions<GetEpisodesQuery, GetEpisodesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetEpisodesQuery, GetEpisodesQueryVariables>(GetEpisodesDocument, options);
+      }
+export function useGetEpisodesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetEpisodesQuery, GetEpisodesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetEpisodesQuery, GetEpisodesQueryVariables>(GetEpisodesDocument, options);
+        }
+export type GetEpisodesQueryHookResult = ReturnType<typeof useGetEpisodesQuery>;
+export type GetEpisodesLazyQueryHookResult = ReturnType<typeof useGetEpisodesLazyQuery>;
+export type GetEpisodesQueryResult = Apollo.QueryResult<GetEpisodesQuery, GetEpisodesQueryVariables>;

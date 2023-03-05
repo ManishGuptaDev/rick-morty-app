@@ -23,4 +23,14 @@
       }
     }
   }
+
+  &__characters, &__episodes {
+    margin: 25px;
+    .heading {
+      @include m.flex(row, space-between, center);
+    }
+    .list {
+      @include m.flex(row, center, stretch);
+    }
+  }
 }

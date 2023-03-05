@@ -1,0 +1,21 @@
+@use "styles/variables.scss" as v;
+@use "styles/mixins.scss" as m;
+
+.episode-card {
+  width: 100%;
+  padding: v.$padding-3;
+  & > * {
+   height: 100%
+  }
+
+  &__cast-avatar {
+    @include m.flex(row, flex-start, center, wrap);
+    & > * {
+      margin-left: -10px;
+    }
+  }
+
+  &__heading {
+    @include m.flex(row, space-between, center);
+  }
+}

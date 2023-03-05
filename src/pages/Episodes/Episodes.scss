@@ -1,0 +1,12 @@
+@use "styles/variables.scss" as v;
+@use "styles/mixins.scss" as m;
+
+.episodes-page {
+  margin: v.$margin-10 v.$margin-5;
+  &__list {
+    @include m.flex(row, center, stretch, wrap);
+    & > * {
+      flex-basis: 25%;
+    }
+  }
+}
