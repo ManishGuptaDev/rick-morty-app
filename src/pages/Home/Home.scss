@@ -1,0 +1,26 @@
+@use "styles/colors.scss" as c;
+@use "styles/variables.scss" as v;
+@use "styles/mixins.scss" as m;
+
+.home-page {
+  &__banner {
+    &__img {
+      height: 300px;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  }
+
+  &__information {
+    color: c.$white;
+    margin: v.$margin-4 0;
+    padding: 0 v.$padding-14;
+    &__content {
+      @include m.flex(column);
+      p {
+        text-align: center;
+      }
+    }
+  }
+}

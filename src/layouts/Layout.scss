@@ -1,0 +1,13 @@
+@use "styles/colors.scss" as c;
+@use "styles/mixins.scss" as m;
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  @include m.flex(column, flex-start, normal);
+
+  &__main-content {
+    flex: 1;
+    background-color: c.$black;
+  }
+}

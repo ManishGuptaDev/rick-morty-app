@@ -1,0 +1,30 @@
+@use "styles/colors.scss" as c;
+@use "styles/variables.scss" as v;
+
+.page-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: c.$light-grey;
+  padding: v.$padding-5;
+
+  &__logo {
+    height: 80px;
+    width: auto;
+    border-radius: v.$border-radius-1;
+  }
+
+  &__navigation {
+    flex: 1;
+    ul {
+      display: flex;
+      gap: v.$margin-4;
+      justify-content: space-evenly;
+      li {
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
