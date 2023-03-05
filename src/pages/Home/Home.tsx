@@ -24,7 +24,7 @@ const Home = () => {
           <h2>Rick & Morty App</h2>
           <p>
             Here we can get all information about Rick & Morty. We can find out everything about the
-            characters and episodes.
+            characters and episodes
           </p>
         </div>
       </section>
