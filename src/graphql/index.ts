@@ -1,4 +1,4 @@
-import { HttpLink, ApolloClient, InMemoryCache, NormalizedCacheObject, gql } from '@apollo/client'
+import { HttpLink, ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
 
 const httpLink = new HttpLink({
   uri: 'https://rickandmortyapi.com/graphql',

@@ -5,16 +5,16 @@ type User = {
 }
 
 export interface AuthState {
-  isLoggedIn: boolean;
-  user : User
+  isLoggedIn: boolean
+  user: User
 }
 
 const initialState: AuthState = {
   isLoggedIn: true,
   user: {
-    userName : ''
+    userName: '',
   },
-};
+}
 
 const authSlice = createSlice({
   name: 'auth',

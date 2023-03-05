@@ -23,7 +23,7 @@ const Home = () => {
         <div className='home-page__information__content'>
           <h2>Rick & Morty App</h2>
           <p>
-            Here we can get all information about Rick & Morty. We can find out everything about the
+            Here we get all information about Rick & Morty. We can find out everything about the
             characters and episodes
           </p>
         </div>
