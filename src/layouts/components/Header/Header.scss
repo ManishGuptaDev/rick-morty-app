@@ -1,22 +1,25 @@
 @use "styles/colors.scss" as c;
+@use "styles/variables.scss" as v;
 
 .page-header {
   width: 100%;
   display: flex;
   align-items: center;
   background-color: c.$light-grey;
-  padding: 15px;
+  padding: v.$padding-5;
 
   &__logo {
     height: 80px;
     width: auto;
-    border-radius: 5px;
+    border-radius: v.$border-radius-1;
   }
 
   &__navigation {
+    flex: 1;
     ul {
       display: flex;
-      gap: 15px;
+      gap: v.$margin-4;
+      justify-content: space-evenly;
       li {
         a {
           text-decoration: none;
