@@ -46,3 +46,20 @@ export const GET_EPISODES = gql`
     }
   }
 `
+
+export const GET_EPISODES_BY_IDS = gql`
+  query getEpisodesByIds($ids: [ID!]!) {
+    episodesByIds(ids: $ids) {
+      id
+      name
+      air_date
+      episode
+      created
+      characters {
+        id
+        name
+        image
+      }
+    }
+  }
+`

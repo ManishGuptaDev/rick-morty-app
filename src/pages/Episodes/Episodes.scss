@@ -4,7 +4,7 @@
 .episodes-page {
   margin: v.$margin-10 v.$margin-5;
   &__list {
-    @include m.flex(row, center, stretch, wrap);
+    @include m.flex(row, flex-start, stretch, wrap);
     & > * {
       flex-basis: 25%;
     }
