@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { AppDispatch } from 'store'
+import { emptyWishlist } from './wishlistSlice'
 
 type User = {
   userName: string
@@ -22,8 +24,10 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login(state) {
+    login(state, payload) {
       state.isLoggedIn = true
+      state.user.userName = payload.payload || 'Guest'
+      state.isLoginFormOpen = false
     },
     logout(state) {
       state.isLoggedIn = false
@@ -37,6 +41,13 @@ const authSlice = createSlice({
   },
 })
 
-export const { login, logout, showLoginForm, closeLoginForm } = authSlice.actions
+export const logout = () => {
+  return async (dispatch: AppDispatch) => {
+    dispatch(authSlice.actions.logout())
+    dispatch(emptyWishlist())
+  }
+}
+
+export const { login, showLoginForm, closeLoginForm } = authSlice.actions
 
 export default authSlice.reducer

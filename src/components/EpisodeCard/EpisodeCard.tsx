@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
@@ -6,6 +7,9 @@ import IconButton from '@mui/material/IconButton'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Avatar from '@mui/material/Avatar'
 
+import { useAppDispatch, useAppSelector } from 'store/hooks'
+import { addToWishlist, removeFromWishlist } from 'store/wishlistSlice'
+import { showLoginForm } from 'store/authSlice'
 import { Episode } from 'graphql/__generated__/api.types'
 import episode1 from 'assets/images/episode1.jpg'
 import episode2 from 'assets/images/episode2.jpg'
@@ -26,16 +30,36 @@ const getRandomImg = () => {
 }
 
 const EpisodeCard: React.FC<Props> = ({ episode }) => {
+  const dispatch = useAppDispatch()
+  const episodeIds = useAppSelector((state) => state.wishlist.episodeIds)
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+
+  const isInWishList = episodeIds.includes(episode?.id || '')
+
+  const memoizedImgSrc = useMemo(() => getRandomImg(),[])
+
+  const handleWishlistIconClick = () => {
+    if(isLoggedIn) {
+      isInWishList ? dispatch(removeFromWishlist(episode?.id)) : dispatch(addToWishlist(episode?.id))
+    }else {
+      dispatch(showLoginForm())
+    }
+  }
+
   return (
     <div className='episode-card'>
       <Card>
-        <CardMedia component='img' height='250' image={getRandomImg()} alt='image' />
+        <CardMedia component='img' height='250' image={memoizedImgSrc} alt='image' />
         <CardContent>
-          <Typography color='text.secondary' gutterBottom  component='div'>
+          <Typography color='text.secondary' gutterBottom component='div'>
             <div className='episode-card__heading'>
               {episode.episode}
-              <IconButton aria-label='add to favorites'>
-                <FavoriteIcon />
+              <IconButton aria-label='add to favorites' onClick={handleWishlistIconClick}>
+                <FavoriteIcon
+                  className={`episode-card__wishlist-icon ${
+                    isInWishList ? 'episode-card__wishlist-icon--red' : ''
+                  }`}
+                />
               </IconButton>
             </div>
           </Typography>

@@ -1,3 +1,4 @@
+@use "styles/colors.scss" as c;
 @use "styles/variables.scss" as v;
 @use "styles/mixins.scss" as m;
 
@@ -17,5 +18,11 @@
 
   &__heading {
     @include m.flex(row, space-between, center);
+  }
+
+  &__wishlist-icon {
+    &--red {
+      fill: c.$red !important;
+    }
   }
 }
