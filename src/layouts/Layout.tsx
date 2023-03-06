@@ -1,8 +1,10 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Box from '@mui/material/Box'
+import { Toaster } from 'react-hot-toast'
 
 import { Header, Footer } from './components'
+import { LogInForm } from 'components/LogInForm'
 
 import './Layout.scss'
 
@@ -16,6 +18,14 @@ const Layout: React.FC<LayoutProps> = () => {
         <Outlet />
       </main>
       <Footer />
+      <LogInForm />
+      <Toaster
+        containerStyle={{ zIndex: 9999999 }}
+        position='bottom-right'
+        toastOptions={{
+          duration: 2000,
+        }}
+      />
     </Box>
   )
 }

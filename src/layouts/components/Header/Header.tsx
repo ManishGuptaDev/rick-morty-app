@@ -1,18 +1,21 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button'
+import { useAppDispatch } from 'store/hooks'
+import { showLoginForm } from 'store/authSlice'
 
 import './Header.scss'
 import logo from 'assets/images/logo.jpg'
-import { useAppSelector } from 'store/hooks'
 
 const Header = () => {
-  const isloggedIn = useAppSelector((state) => state.auth.isLoggedIn)
   const navigate = useNavigate()
-
-  console.log(isloggedIn)
+  const dispatch = useAppDispatch()
 
   const handleImgClick = () => {
     navigate('/')
+  }
+
+  const handleLoginClick = () => {
+    dispatch(showLoginForm())
   }
 
   return (
@@ -33,7 +36,9 @@ const Header = () => {
         </ul>
       </nav>
       <div className='page-header__login'>
-        <Button variant='outlined'>Login</Button>
+        <Button variant='outlined' onClick={handleLoginClick}>
+          Login
+        </Button>
       </div>
     </section>
   )

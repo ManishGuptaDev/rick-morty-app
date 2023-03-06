@@ -31,7 +31,7 @@ const EpisodeCard: React.FC<Props> = ({ episode }) => {
       <Card>
         <CardMedia component='img' height='250' image={getRandomImg()} alt='image' />
         <CardContent>
-          <Typography color='text.secondary' gutterBottom>
+          <Typography color='text.secondary' gutterBottom  component='div'>
             <div className='episode-card__heading'>
               {episode.episode}
               <IconButton aria-label='add to favorites'>
@@ -43,7 +43,7 @@ const EpisodeCard: React.FC<Props> = ({ episode }) => {
             {episode.name}
           </Typography>
           <Typography variant='body2'>Air Date: {episode.air_date}</Typography>
-          <Typography variant='body2'>
+          <Typography variant='body2' component='div'>
             Characters
             <div className='episode-card__cast-avatar'>
               {episode.characters.map((character) => (
