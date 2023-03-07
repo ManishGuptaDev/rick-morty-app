@@ -1,7 +1,7 @@
 @use "styles/variables.scss" as v;
 @use "styles/mixins.scss" as m;
 
-.Wishlist-page {
+.Watchlist-page {
   margin: v.$margin-10 v.$margin-5;
   &__list {
     @include m.flex(row, flex-start, stretch, wrap);

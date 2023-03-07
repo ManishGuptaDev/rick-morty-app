@@ -8,7 +8,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import Avatar from '@mui/material/Avatar'
 
 import { useAppDispatch, useAppSelector } from 'store/hooks'
-import { addToWishlist, removeFromWishlist } from 'store/wishlistSlice'
+import { addToWatchlist, removeFromWatchlist } from 'store/watchlistSlice'
 import { showLoginForm } from 'store/authSlice'
 import { Episode } from 'graphql/__generated__/api.types'
 import episode1 from 'assets/images/episode1.jpg'
@@ -31,16 +31,16 @@ const getRandomImg = () => {
 
 const EpisodeCard: React.FC<Props> = ({ episode }) => {
   const dispatch = useAppDispatch()
-  const episodeIds = useAppSelector((state) => state.wishlist.episodeIds)
+  const episodeIds = useAppSelector((state) => state.watchlist.episodeIds)
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
 
-  const isInWishList = episodeIds.includes(episode?.id || '')
+  const isInWatchlist = episodeIds.includes(episode?.id || '')
 
   const memoizedImgSrc = useMemo(() => getRandomImg(),[])
 
-  const handleWishlistIconClick = () => {
+  const handleWatchlistIconClick = () => {
     if(isLoggedIn) {
-      isInWishList ? dispatch(removeFromWishlist(episode?.id)) : dispatch(addToWishlist(episode?.id))
+      isInWatchlist ? dispatch(removeFromWatchlist(episode?.id)) : dispatch(addToWatchlist(episode?.id))
     }else {
       dispatch(showLoginForm())
     }
@@ -54,10 +54,10 @@ const EpisodeCard: React.FC<Props> = ({ episode }) => {
           <Typography color='text.secondary' gutterBottom component='div'>
             <div className='episode-card__heading'>
               {episode.episode}
-              <IconButton aria-label='add to favorites' onClick={handleWishlistIconClick}>
+              <IconButton aria-label='add to favorites' onClick={handleWatchlistIconClick}>
                 <FavoriteIcon
-                  className={`episode-card__wishlist-icon ${
-                    isInWishList ? 'episode-card__wishlist-icon--red' : ''
+                  className={`episode-card__watchlist-icon ${
+                    isInWatchlist ? 'episode-card__watchlist-icon--red' : ''
                   }`}
                 />
               </IconButton>

@@ -8,12 +8,12 @@ import {
   GetEpisodesByIdsQueryVariables,
 } from 'graphql/__generated__/api.types'
 
-export const useWishlist = () => {
+export const useWatchlist = () => {
   const apolloClient = useApolloClient()
   const [isLoading, setLoading] = useState<boolean>(false)
   const [episodes, setEpisodes] = useState<Episode[]>([])
 
-  const episodeIds = useAppSelector((state) => state.wishlist.episodeIds)
+  const episodeIds = useAppSelector((state) => state.watchlist.episodeIds)
 
   useEffect(() => {
     fetchEpisodesByIds()

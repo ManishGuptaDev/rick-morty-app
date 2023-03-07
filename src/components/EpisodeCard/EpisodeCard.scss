@@ -20,7 +20,7 @@
     @include m.flex(row, space-between, center);
   }
 
-  &__wishlist-icon {
+  &__watchlist-icon {
     &--red {
       fill: c.$red !important;
     }

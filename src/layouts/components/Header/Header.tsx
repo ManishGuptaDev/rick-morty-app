@@ -81,7 +81,7 @@ const Header = () => {
                 'aria-labelledby': 'basic-button',
               }}
             >
-              <MenuItem onClick={handleClose} component={NavLink} to='/wishlist'>My Wishlist</MenuItem>
+              <MenuItem onClick={handleClose} component={NavLink} to='/watchlist'>My Watchlist</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </>

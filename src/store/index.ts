@@ -1,11 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import authReducer from './authSlice'
-import wishlistReducer from './wishlistSlice'
+import watchlistReducer from './watchlistSlice'
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    wishlist: wishlistReducer,
+    watchlist: watchlistReducer,
   },
 })
 

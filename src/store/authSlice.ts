@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { AppDispatch } from 'store'
-import { emptyWishlist } from './wishlistSlice'
+import { emptyWatchlist } from './watchlistSlice'
 
 type User = {
   userName: string
@@ -44,7 +44,7 @@ const authSlice = createSlice({
 export const logout = () => {
   return async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.logout())
-    dispatch(emptyWishlist())
+    dispatch(emptyWatchlist())
   }
 }
 
