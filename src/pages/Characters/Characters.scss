@@ -4,10 +4,14 @@
 
 .characters-page {
   margin: v.$margin-10 v.$margin-5;
+  @include m.flex(row, flex-start, stretch);
+  gap: 25px;
+
   &__list {
     @include m.flex(row, flex-start, stretch, wrap);
+    gap: 5px;
     & > * {
-      flex-basis: 25%;
+      flex-basis: 33%;
     }
   }
 
@@ -16,5 +20,16 @@
     padding: v.$padding-9 0;
     @include m.flex();
     border-radius: v.$border-radius-5;
+  }
+
+  &__left-panel {
+    background: c.$white;
+    color: c.$black;
+    padding: 16px;
+    flex-basis: 25%;
+  }
+
+  &__right-panel {
+    flex-basis: 75%;
   }
 }

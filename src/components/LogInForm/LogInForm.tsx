@@ -49,8 +49,8 @@ const LogInForm = () => {
             autoFocus
             margin='dense'
             id='name'
-            label='Email Address'
-            type='email'
+            label='User Name'
+            type='text'
             fullWidth
             variant='outlined'
             required
