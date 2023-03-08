@@ -1,32 +1,26 @@
-import { useQuery } from '@apollo/client'
-import { EpisodeCard } from 'components/EpisodeCard'
-import { GET_EPISODES } from 'graphql/queries.graphql'
-import {
-  Episode,
-  GetEpisodesQuery,
-  GetEpisodesQueryVariables,
-} from 'graphql/__generated__/api.types'
+import { EpisodeProvider } from 'context/episodeContext'
+import { FilterProvider, FilterType } from 'context/filterContext'
+import ResponsiveFilters from 'components/ResponsiveFilters'
+import EpisodesList from './components/EpisodesList'
+import Pagination from './components/Pagination'
 
 import './Episodes.scss'
 
 const Episodes = () => {
-  const { data } = useQuery<GetEpisodesQuery, GetEpisodesQueryVariables>(GET_EPISODES, {
-    variables: {
-      page: 1,
-    },
-  })
-
-  const episodes: Episode[] = data?.episodes?.results?.length
-    ? (data.episodes.results.filter((r) => typeof r === 'object' && r !== null) as Episode[])
-    : []
-
   return (
     <div className='episodes-page'>
-      <div className='episodes-page__list'>
-        {episodes &&
-          episodes
-            .map((episode) => <EpisodeCard key={episode.id} episode={episode} />)}
-      </div>
+
+      <EpisodeProvider>
+        <div className='episodes-page__left-panel'>
+          <FilterProvider type={FilterType.Episode}>
+            <ResponsiveFilters/>
+          </FilterProvider>
+        </div>
+        <div className='episodes-page__right-panel'>
+          <EpisodesList />
+          <Pagination />
+        </div>
+      </EpisodeProvider>
     </div>
   )
 }

@@ -4,10 +4,8 @@ import { CharacterProvider } from 'context/characterContext'
 import { FilterProvider, FilterType } from 'context/filterContext'
 import CharactersList from './components/CharactersList'
 import Pagination from './components/Pagination'
-import Filters from './components/Filters'
-import MobileFilters from './components/MobileFilters'
+import ResponsiveFilters from 'components/ResponsiveFilters'
 import './Characters.scss'
-import { Mobile, Default } from 'components/Media'
 
 const Characters = () => {
   return (
@@ -15,12 +13,7 @@ const Characters = () => {
       <CharacterProvider>
         <div className='characters-page__left-panel'>
           <FilterProvider type={FilterType.Character}>
-            <Mobile>
-              <MobileFilters/>
-            </Mobile>
-            <Default>
-              <Filters />
-            </Default>
+            <ResponsiveFilters />
           </FilterProvider>
         </div>
         <div className='characters-page__right-panel'>

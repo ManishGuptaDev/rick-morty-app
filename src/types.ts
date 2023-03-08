@@ -25,3 +25,8 @@ export const CharactersFilterField: FilterFields = [
   { field: 'type', type: FiltersTypes.SELECT },
   { field: 'gender', type: FiltersTypes.SELECT }
 ]
+
+export const EpisodesFilterField: FilterFields = [
+  { field: 'name', type: FiltersTypes.AUTOCOMPLETE },
+  { field: 'episode', type: FiltersTypes.SELECT },
+]
