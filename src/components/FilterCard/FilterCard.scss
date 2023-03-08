@@ -1,0 +1,16 @@
+@use "styles/variables.scss" as v;
+
+.filter-card {
+  margin-bottom: v.$margin-5;
+
+  &__title{
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: v.$margin-1;
+  }
+}
+
+.MuiMenu-list  {
+  max-height: 250px !important;
+}
+

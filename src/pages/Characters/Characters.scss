@@ -7,11 +7,20 @@
   @include m.flex(row, flex-start, stretch);
   gap: 25px;
 
+  @media (max-width: v.$max-breakpoint-md) {
+    display: block;
+  }
+
   &__list {
     @include m.flex(row, flex-start, stretch, wrap);
-    gap: 5px;
     & > * {
       flex-basis: 33%;
+      @media (max-width: v.$max-breakpoint-xl) {
+        flex-basis: 50%;
+      }
+      @media (max-width: v.$max-breakpoint-sm) {
+        flex-basis: 100%;
+      }
     }
   }
 
@@ -27,6 +36,11 @@
     color: c.$black;
     padding: 16px;
     flex-basis: 25%;
+
+    @media (max-width: v.$max-breakpoint-md) {
+      background: none;
+      padding: 0 v.$padding-3 v.$padding-5 v.$padding-3;
+    }
   }
 
   &__right-panel {

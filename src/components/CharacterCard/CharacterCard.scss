@@ -3,7 +3,7 @@
 
 .character-card {
   width: 100%;
-  padding: v.$padding-3;
+  padding: 0 v.$padding-3 v.$padding-7 v.$padding-3;
   & > * {
     height: 100%
   }

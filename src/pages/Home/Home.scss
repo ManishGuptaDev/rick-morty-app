@@ -31,6 +31,19 @@
     }
     .list {
       @include m.flex(row, center, stretch);
+
+      @media (max-width: v.$max-breakpoint-xl) {
+        flex-wrap: wrap;
+        & > * {
+          flex-basis: 50%;
+        }
+      }
+
+      @media (max-width: v.$max-breakpoint-sm) {
+        & > * {
+          flex-basis: 100%;
+        }
+      }
     }
   }
 }

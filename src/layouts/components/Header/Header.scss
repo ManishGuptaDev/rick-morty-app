@@ -9,25 +9,56 @@
   background-color: c.$light-grey;
   padding: v.$padding-5;
 
+  @media (max-width: v.$max-breakpoint-md) {
+    justify-content: space-between;
+  }
+
   &__logo {
     height: 80px;
     width: auto;
     border-radius: v.$border-radius-1;
-    @include m.clickable()
+    @include m.clickable();
+
+    @media (max-width: v.$max-breakpoint-md) {
+      height: 60px;
+    }
   }
 
   &__navigation {
     flex: 1;
     margin-left: v.$margin-14;
+
     ul {
       display: flex;
       gap: v.$margin-14;
       justify-content: flex-start;
+
       li {
         a {
           text-decoration: none;
         }
       }
+    }
+
+    @media (max-width: v.$max-breakpoint-md) {
+      margin: 0;
+
+      ul {
+        display: block;
+        padding-top: 10px;
+        li {
+          margin: 10px 0;
+          a {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &__hamburger {
+    svg {
+      fill: c.$black;
     }
   }
 }

@@ -1,33 +1,33 @@
-import Pagination from '@mui/material/Pagination'
-import { CharacterCard } from 'components/CharacterCard'
-import { FilterSelection } from 'components/FilterSelection'
-import { useCharacters } from './hooks'
+
+
+import { CharacterProvider } from 'context/characterContext'
+import { FilterProvider, FilterType } from 'context/filterContext'
+import CharactersList from './components/CharactersList'
+import Pagination from './components/Pagination'
+import Filters from './components/Filters'
+import MobileFilters from './components/MobileFilters'
 import './Characters.scss'
+import { Mobile, Default } from 'components/Media'
 
 const Characters = () => {
-  const { currentPage, totalPages, characters, onPageChange } = useCharacters()
-
   return (
     <div className='characters-page'>
-      <div className='characters-page__left-panel'>
-        <FilterSelection />
-      </div>
-      <div className='characters-page__right-panel'>
-        <div className='characters-page__list'>
-          {characters &&
-            characters.map((character) => (
-              <CharacterCard key={character.id} character={character} />
-            ))}
+      <CharacterProvider>
+        <div className='characters-page__left-panel'>
+          <FilterProvider type={FilterType.Character}>
+            <Mobile>
+              <MobileFilters/>
+            </Mobile>
+            <Default>
+              <Filters />
+            </Default>
+          </FilterProvider>
         </div>
-        <div className='characters-page__pagination'>
-          <Pagination
-            page={currentPage}
-            count={totalPages}
-            color='primary'
-            onChange={onPageChange}
-          />
+        <div className='characters-page__right-panel'>
+          <CharactersList />
+          <Pagination />
         </div>
-      </div>
+      </CharacterProvider>
     </div>
   )
 }
