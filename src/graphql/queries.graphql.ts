@@ -63,3 +63,35 @@ export const GET_EPISODES_BY_IDS = gql`
     }
   }
 `
+export const GET_CHARACTER_BY_ID = gql`
+  query getCharacter($id: ID!) {
+    character(id: $id) {
+      id
+      name
+      status
+      species
+      type
+      gender
+      image
+      created
+      origin {
+        name
+        type
+        dimension
+        created
+      }
+      location {
+        name
+        type
+        dimension
+        created
+      }
+      episode {
+        name
+        episode
+        air_date
+        created
+      }
+    }
+  }
+`

@@ -224,6 +224,13 @@ export type GetEpisodesByIdsQueryVariables = Exact<{
 
 export type GetEpisodesByIdsQuery = { __typename?: 'Query', episodesByIds?: Array<{ __typename?: 'Episode', id?: string | null, name?: string | null, air_date?: string | null, episode?: string | null, created?: string | null, characters: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null } | null> } | null> | null };
 
+export type GetCharacterQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetCharacterQuery = { __typename?: 'Query', character?: { __typename?: 'Character', id?: string | null, name?: string | null, status?: string | null, species?: string | null, type?: string | null, gender?: string | null, image?: string | null, created?: string | null, origin?: { __typename?: 'Location', name?: string | null, type?: string | null, dimension?: string | null, created?: string | null } | null, location?: { __typename?: 'Location', name?: string | null, type?: string | null, dimension?: string | null, created?: string | null } | null, episode: Array<{ __typename?: 'Episode', name?: string | null, episode?: string | null, air_date?: string | null, created?: string | null } | null> } | null };
+
 
 export const GetCharactersDocument = gql`
     query GetCharacters($page: Int, $filter: FilterCharacter) {
@@ -373,3 +380,63 @@ export function useGetEpisodesByIdsLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type GetEpisodesByIdsQueryHookResult = ReturnType<typeof useGetEpisodesByIdsQuery>;
 export type GetEpisodesByIdsLazyQueryHookResult = ReturnType<typeof useGetEpisodesByIdsLazyQuery>;
 export type GetEpisodesByIdsQueryResult = Apollo.QueryResult<GetEpisodesByIdsQuery, GetEpisodesByIdsQueryVariables>;
+export const GetCharacterDocument = gql`
+    query getCharacter($id: ID!) {
+  character(id: $id) {
+    id
+    name
+    status
+    species
+    type
+    gender
+    image
+    created
+    origin {
+      name
+      type
+      dimension
+      created
+    }
+    location {
+      name
+      type
+      dimension
+      created
+    }
+    episode {
+      name
+      episode
+      air_date
+      created
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCharacterQuery__
+ *
+ * To run a query within a React component, call `useGetCharacterQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCharacterQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCharacterQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetCharacterQuery(baseOptions: Apollo.QueryHookOptions<GetCharacterQuery, GetCharacterQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCharacterQuery, GetCharacterQueryVariables>(GetCharacterDocument, options);
+      }
+export function useGetCharacterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharacterQuery, GetCharacterQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCharacterQuery, GetCharacterQueryVariables>(GetCharacterDocument, options);
+        }
+export type GetCharacterQueryHookResult = ReturnType<typeof useGetCharacterQuery>;
+export type GetCharacterLazyQueryHookResult = ReturnType<typeof useGetCharacterLazyQuery>;
+export type GetCharacterQueryResult = Apollo.QueryResult<GetCharacterQuery, GetCharacterQueryVariables>;
