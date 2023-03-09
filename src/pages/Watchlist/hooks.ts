@@ -27,8 +27,8 @@ export const useWatchlist = () => {
   }, [episodeIds])
 
   const fetchEpisodesByIds = () => {
-    setLoading(true)
     if (episodeIds.length) {
+      setLoading(true)
       apolloClient
         .query<GetEpisodesByIdsQuery, GetEpisodesByIdsQueryVariables>({
           query: GET_EPISODES_BY_IDS,

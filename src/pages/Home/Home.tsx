@@ -1,4 +1,8 @@
 import { useQuery } from '@apollo/client'
+import { Link as RouterLink } from 'react-router-dom'
+import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
+
 import { GET_CHARACTERS, GET_EPISODES } from 'graphql/queries.graphql'
 import {
   Character,
@@ -9,10 +13,11 @@ import {
   GetEpisodesQueryVariables,
 } from 'graphql/__generated__/api.types'
 import banner from 'assets/images/banner.jpg'
-import './Home.scss'
 import { CharacterCard } from 'components/CharacterCard'
 import { EpisodeCard } from 'components/EpisodeCard'
-import Typography from '@mui/material/Typography'
+import { isMobile } from 'Utils/helper'
+
+import './Home.scss'
 
 const Home = () => {
   const { data: charactersData, loading: charactersLoading } = useQuery<
@@ -54,8 +59,8 @@ const Home = () => {
         <div className='home-page__information__content'>
           <h2>Rick & Morty App</h2>
           <p>
-            Here we get all information about Rick & Morty. Find out everything about the
-            characters and the episodes.
+            Here we get all information about Rick & Morty. Find out everything about the characters
+            and the episodes.
           </p>
         </div>
       </section>
@@ -64,7 +69,9 @@ const Home = () => {
           <Typography variant='h4' gutterBottom>
             Characters
           </Typography>
-          <div>View All Characters</div>
+          <Link component={RouterLink} to='/characters'>
+            {isMobile() ? 'View All' : 'View All Characters'}
+          </Link>
         </div>
         {charactersLoading ? (
           <div className='loader'>loading...</div>
@@ -82,7 +89,9 @@ const Home = () => {
           <Typography variant='h4' gutterBottom>
             Episodes
           </Typography>
-          <div>View All Episodes</div>
+          <Link component={RouterLink} to='/episodes'>
+            {isMobile() ? 'View All' : 'View All Episodes'}
+          </Link>
         </div>
         {episodesLoading ? (
           <div className='loader'>loading...</div>

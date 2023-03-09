@@ -28,6 +28,10 @@
     margin: 25px;
     .heading {
       @include m.flex(row, space-between, center);
+      a{
+        color: c.$white;
+        text-decoration-color: c.$white;
+      }
     }
     .list {
       @include m.flex(row, center, stretch);
