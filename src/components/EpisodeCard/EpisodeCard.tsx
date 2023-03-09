@@ -32,16 +32,18 @@ const getRandomImg = () => {
 const EpisodeCard: React.FC<Props> = ({ episode }) => {
   const dispatch = useAppDispatch()
   const episodeIds = useAppSelector((state) => state.watchlist.episodeIds)
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
 
   const isInWatchlist = episodeIds.includes(episode?.id || '')
 
-  const memoizedImgSrc = useMemo(() => getRandomImg(),[])
+  const memoizedImgSrc = useMemo(() => getRandomImg(), [])
 
   const handleWatchlistIconClick = () => {
-    if(isLoggedIn) {
-      isInWatchlist ? dispatch(removeFromWatchlist(episode?.id)) : dispatch(addToWatchlist(episode?.id))
-    }else {
+    if (isLoggedIn) {
+      isInWatchlist
+        ? dispatch(removeFromWatchlist(episode?.id))
+        : dispatch(addToWatchlist(episode?.id))
+    } else {
       dispatch(showLoginForm())
     }
   }
@@ -67,16 +69,18 @@ const EpisodeCard: React.FC<Props> = ({ episode }) => {
             {episode.name}
           </Typography>
           <Typography variant='body2'>Air Date: {episode.air_date}</Typography>
-          <Typography variant='body2' component='div'>
-            Characters
-            <div className='episode-card__cast-avatar'>
-              {episode.characters.map((character) => (
-                <div key={character?.id}>
-                  {character?.image && <Avatar src={character.image} />}
-                </div>
-              ))}
-            </div>
-          </Typography>
+          {episode.characters.length > 0 && (
+            <Typography variant='body2' component='div'>
+              Characters
+              <div className='episode-card__cast-avatar'>
+                {episode.characters.map((character) => (
+                  <div key={character?.id}>
+                    {character?.image && <Avatar src={character.image} />}
+                  </div>
+                ))}
+              </div>
+            </Typography>
+          )}
         </CardContent>
       </Card>
     </div>

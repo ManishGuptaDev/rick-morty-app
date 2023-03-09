@@ -1,15 +1,52 @@
 import { useParams } from 'react-router-dom'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import Carousel from 'react-material-ui-carousel'
 import { useCharacter } from './hooks'
+import { EpisodeCard } from 'components/EpisodeCard'
+import Backdrop from '@mui/material/Backdrop'
+import CircularProgress from '@mui/material/CircularProgress'
+import { useMobile, useLargeDevice } from 'hooks/media'
+import { Episode } from 'graphql/__generated__/api.types'
+
 import './Character.scss'
 
 const Character = () => {
   const { id } = useParams()
   const { character, isLoading } = useCharacter(id)
+  const isLargeDevice = useLargeDevice()
+  const isMobile = useMobile()
+
+  let sliderItems = 0
+  const items: Array<React.ReactElement> = []
+  let itemsToShow = 3
+
+  if (isLargeDevice) {
+    itemsToShow = 4
+  } else if (isMobile) {
+    itemsToShow = 1
+  }
+
+  if (character) {
+    const episodes = character.episode.filter((episode) => episode != null) as Episode[]
+    sliderItems = episodes.length > itemsToShow ? itemsToShow : episodes.length
+
+    for (let i = 0; i < episodes.length; i += sliderItems) {
+      if (i % sliderItems === 0) {
+        items.push(
+          <div className='episode-container' key={i.toString()}>
+            {episodes.slice(i, i + sliderItems).map((episode) => {
+              return <EpisodeCard key={episode.id} episode={episode} />
+            })}
+          </div>,
+        )
+      }
+    }
+  }
+
   return (
     <div className='character-page'>
-      {!character && <div>Character does not exists</div>}
+      {!isLoading && !character && <div>Character does not exists</div>}
       {character && (
         <>
           <div className='character-page__detail'>
@@ -84,9 +121,15 @@ const Character = () => {
           </div>
           <div className='character-page__episodes'>
             <p className='heading'>{`${character.name}'s Episodes`}</p>
+            <Carousel animation='slide' autoPlay={false} cycleNavigation>
+              {items}
+            </Carousel>
           </div>
         </>
       )}
+      <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
+        <CircularProgress color='inherit' />
+      </Backdrop>
     </div>
   )
 }

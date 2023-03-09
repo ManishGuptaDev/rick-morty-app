@@ -9,19 +9,34 @@
     gap: v.$margin-5;
     max-height: 500px;
 
+    @media (max-width: v.$max-breakpoint-md) {
+      flex-wrap: wrap;
+      max-height: none;
+    }
+
     & > * {
       flex-grow: 1;
       flex-basis: 50%;
+      
+      @media (max-width: v.$max-breakpoint-md) {
+        flex-basis: 100%;
+      }
     }
 
     &__img {
       background-color: c.$white;
       border-radius: 5px;
+      @media (max-width: v.$max-breakpoint-md) {
+        background-color: inherit;
+      }
       img {
         height: 100%;
         width: 100%;
         object-fit: contain;
         border-radius: 5px;
+        @media (max-width: v.$max-breakpoint-md) {
+          height: auto;
+        }
       }
     }
 
@@ -50,6 +65,9 @@
       text-align: center;
       border-bottom: 1px solid;
       margin: v.$margin-2 0;
+    }
+    .episode-container {
+      @include m.flex(row, center, stretch)
     }
   }
 }

@@ -15,11 +15,12 @@ import {
 import banner from 'assets/images/banner.jpg'
 import { CharacterCard } from 'components/CharacterCard'
 import { EpisodeCard } from 'components/EpisodeCard'
-import { isMobile } from 'Utils/helper'
+import { useMobile } from 'hooks/media'
 
 import './Home.scss'
 
 const Home = () => {
+  const isMobile = useMobile()
   const { data: charactersData, loading: charactersLoading } = useQuery<
     GetCharactersQuery,
     GetCharactersQueryVariables
@@ -70,7 +71,7 @@ const Home = () => {
             Characters
           </Typography>
           <Link component={RouterLink} to='/characters'>
-            {isMobile() ? 'View All' : 'View All Characters'}
+            {isMobile ? 'View All' : 'View All Characters'}
           </Link>
         </div>
         {charactersLoading ? (
@@ -90,7 +91,7 @@ const Home = () => {
             Episodes
           </Typography>
           <Link component={RouterLink} to='/episodes'>
-            {isMobile() ? 'View All' : 'View All Episodes'}
+            {isMobile ? 'View All' : 'View All Episodes'}
           </Link>
         </div>
         {episodesLoading ? (
