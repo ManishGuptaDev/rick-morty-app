@@ -9,7 +9,7 @@ interface Props {
   toggleDrawer: (open: boolean) => void
 }
 
-const SideMenu: React.FC<Props> = ({isOpen, children, toggleDrawer}) => {
+const SideMenu: React.FC<Props> = ({ isOpen, children, toggleDrawer }) => {
   return (
     <div className='drawer'>
       <Drawer open={isOpen} onClose={() => toggleDrawer(false)}>
@@ -26,9 +26,7 @@ const SideMenu: React.FC<Props> = ({isOpen, children, toggleDrawer}) => {
           >
             <CloseIcon />
           </IconButton>
-          <Box sx={{ marginTop: '20px' }}>
-            {children}
-          </Box>
+          <Box sx={{ marginTop: '20px' }}>{children}</Box>
         </Box>
       </Drawer>
     </div>

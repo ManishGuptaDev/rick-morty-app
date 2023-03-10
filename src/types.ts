@@ -1,6 +1,6 @@
 export interface Filter {
   label: string
-  type:FiltersTypes
+  type: FiltersTypes
   options: {
     label: string
     value: string
@@ -10,7 +10,7 @@ export interface Filter {
 
 export enum FiltersTypes {
   SELECT,
-  AUTOCOMPLETE
+  AUTOCOMPLETE,
 }
 
 export type FilterFields = {
@@ -23,7 +23,7 @@ export const CharactersFilterField: FilterFields = [
   { field: 'status', type: FiltersTypes.SELECT },
   { field: 'species', type: FiltersTypes.SELECT },
   { field: 'type', type: FiltersTypes.SELECT },
-  { field: 'gender', type: FiltersTypes.SELECT }
+  { field: 'gender', type: FiltersTypes.SELECT },
 ]
 
 export const EpisodesFilterField: FilterFields = [

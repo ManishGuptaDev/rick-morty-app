@@ -20,8 +20,8 @@ export const useWatchlist = () => {
   }, [])
 
   useEffect(() => {
-    if(episodes.length) {
-      const newEpisodes = episodes.filter(({id}) => episodeIds.includes(id || ''))
+    if (episodes.length) {
+      const newEpisodes = episodes.filter(({ id }) => episodeIds.includes(id || ''))
       setEpisodes(newEpisodes)
     }
   }, [episodeIds])

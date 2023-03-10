@@ -1,4 +1,4 @@
-import React, { createContext,useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useApolloClient } from '@apollo/client'
 import { GET_CHARACTERS } from 'graphql/queries.graphql'
 import {
@@ -33,7 +33,7 @@ const CharacterProvider: React.FC<Props> = ({ children }) => {
     name: '',
     species: '',
     status: '',
-    type: ''
+    type: '',
   })
   const [totalPages, setTotalPages] = useState(1)
   const [characters, setCharacters] = useState<Character[]>([])
@@ -42,7 +42,7 @@ const CharacterProvider: React.FC<Props> = ({ children }) => {
     fetchCharacters(1, filters)
   }, [])
 
-  const fetchCharacters = (pageNumber: number, filter: FilterCharacter ) => {
+  const fetchCharacters = (pageNumber: number, filter: FilterCharacter) => {
     setLoading(true)
     apolloClient
       .query<GetCharactersQuery, GetCharactersQueryVariables>({
@@ -50,7 +50,7 @@ const CharacterProvider: React.FC<Props> = ({ children }) => {
         fetchPolicy: 'network-only',
         variables: {
           page: pageNumber,
-          filter: filter
+          filter: filter,
         },
       })
       .then((response) => {
@@ -65,7 +65,7 @@ const CharacterProvider: React.FC<Props> = ({ children }) => {
         window.scrollTo({
           top: 0,
           behavior: 'smooth',
-        });
+        })
       })
       .catch((error) => {
         console.log(error.message)
@@ -92,7 +92,7 @@ const CharacterProvider: React.FC<Props> = ({ children }) => {
         isLoading,
         totalPages,
         characters,
-        updateByFilters
+        updateByFilters,
       }}
     >
       {children}
@@ -100,11 +100,9 @@ const CharacterProvider: React.FC<Props> = ({ children }) => {
   )
 }
 
-
 // custom hooks
 const useCharacterContext = () => {
-  return useContext(CharacterContext);
-};
+  return useContext(CharacterContext)
+}
 
-
-export { CharacterProvider, useCharacterContext };
+export { CharacterProvider, useCharacterContext }
