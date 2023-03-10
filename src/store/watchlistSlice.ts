@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'
 
 export interface WatchlistState {
   episodeIds: string[]
@@ -29,7 +29,7 @@ const watchlistSlice = createSlice({
     },
     emptyWatchlist(state) {
       state.episodeIds = []
-    }
+    },
   },
 })
 

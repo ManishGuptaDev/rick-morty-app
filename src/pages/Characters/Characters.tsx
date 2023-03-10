@@ -1,5 +1,3 @@
-
-
 import { CharacterProvider } from 'context/characterContext'
 import { FilterProvider, FilterType } from 'context/filterContext'
 import CharactersList from './components/CharactersList'

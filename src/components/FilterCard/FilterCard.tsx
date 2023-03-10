@@ -34,7 +34,7 @@ const FilterCard: React.FC<Props> = ({ title, options, type, selectedValue, onCh
                 id='combo-box-demo'
                 blurOnSelect
                 disableClearable
-                value={options.find(({value}) => value === selectedValue)}
+                value={options.find(({ value }) => value === selectedValue)}
                 options={options}
                 renderInput={(params) => <TextField {...params} />}
                 onChange={(event, selectedOption) => onSelect(selectedOption?.value || '')}

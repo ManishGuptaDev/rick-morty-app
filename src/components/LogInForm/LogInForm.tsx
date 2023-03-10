@@ -1,4 +1,4 @@
-import {useRef } from 'react'
+import { useRef } from 'react'
 import Button from '@mui/material/Button'
 import TextField, { TextFieldProps } from '@mui/material/TextField'
 import Dialog from '@mui/material/Dialog'
@@ -9,11 +9,11 @@ import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 import { useAppSelector, useAppDispatch } from 'store/hooks'
 import { closeLoginForm, login } from 'store/authSlice'
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'
 import './LogInForm.scss'
 
 const LogInForm = () => {
-  const textRef = useRef<TextFieldProps>();
+  const textRef = useRef<TextFieldProps>()
   const dispatch = useAppDispatch()
   const isLoginFormOpen = useAppSelector((state) => state.auth.isLoginFormOpen)
 
@@ -22,7 +22,7 @@ const LogInForm = () => {
   }
 
   const handleLogin = () => {
-    toast.success('You are successfully logged in!');
+    toast.success('You are successfully logged in!')
     dispatch(login(textRef.current?.value))
   }
 

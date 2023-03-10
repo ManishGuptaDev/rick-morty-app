@@ -1,4 +1,4 @@
-import React, { createContext,useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useApolloClient } from '@apollo/client'
 import { GET_EPISODES } from 'graphql/queries.graphql'
 import {
@@ -30,7 +30,7 @@ const EpisodeProvider: React.FC<Props> = ({ children }) => {
   const [page, setPage] = useState<number>(1)
   const [filters, setFilters] = useState<FilterEpisode>({
     name: '',
-    episode: ''
+    episode: '',
   })
   const [totalPages, setTotalPages] = useState(1)
   const [episodes, setEpisodes] = useState<Episode[]>([])
@@ -39,7 +39,7 @@ const EpisodeProvider: React.FC<Props> = ({ children }) => {
     fetchEpisodes(1, filters)
   }, [])
 
-  const fetchEpisodes = (pageNumber: number, filter: FilterEpisode ) => {
+  const fetchEpisodes = (pageNumber: number, filter: FilterEpisode) => {
     setLoading(true)
     apolloClient
       .query<GetEpisodesQuery, GetEpisodesQueryVariables>({
@@ -47,7 +47,7 @@ const EpisodeProvider: React.FC<Props> = ({ children }) => {
         fetchPolicy: 'network-only',
         variables: {
           page: pageNumber,
-          filter: filter
+          filter: filter,
         },
       })
       .then((response) => {
@@ -62,7 +62,7 @@ const EpisodeProvider: React.FC<Props> = ({ children }) => {
         window.scrollTo({
           top: 0,
           behavior: 'smooth',
-        });
+        })
       })
       .catch((error) => {
         console.log(error.message)
@@ -89,7 +89,7 @@ const EpisodeProvider: React.FC<Props> = ({ children }) => {
         isLoading,
         totalPages,
         episodes,
-        updateByFilters
+        updateByFilters,
       }}
     >
       {children}
@@ -97,11 +97,9 @@ const EpisodeProvider: React.FC<Props> = ({ children }) => {
   )
 }
 
-
 // custom hooks
 const useEpisodeContext = () => {
-  return useContext(EpisodeContext);
-};
+  return useContext(EpisodeContext)
+}
 
-
-export { EpisodeProvider, useEpisodeContext };
+export { EpisodeProvider, useEpisodeContext }

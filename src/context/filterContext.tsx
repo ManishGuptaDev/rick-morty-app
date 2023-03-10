@@ -51,8 +51,8 @@ const FilterProvider: React.FC<Props> = ({ type, children }) => {
 
   if (type == FilterType.Character) {
     defaultValues = characterFilterDefaultValues
-  }  
-  
+  }
+
   if (type == FilterType.Episode) {
     defaultValues = episodeFilterDefaultValues
   }

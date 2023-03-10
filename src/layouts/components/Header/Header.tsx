@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import Avatar from '@mui/material/Avatar'
-import { deepOrange } from '@mui/material/colors';
+import { deepOrange } from '@mui/material/colors'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { showLoginForm, logout } from 'store/authSlice'
 import { Mobile, Default } from 'components/Media'
@@ -14,7 +14,6 @@ import SideMenu from 'components/SideMenu'
 
 import './Header.scss'
 import logo from 'assets/images/logo.jpg'
-
 
 const renderNavigationMenu = () => {
   return (
@@ -108,15 +107,9 @@ const Header = () => {
         ) : (
           <>
             <Mobile>
-              <IconButton
-                size='large'
-                sx={{ mr: 2 }}
-                onClick={handleClick}
-              >
+              <IconButton size='large' sx={{ mr: 2 }} onClick={handleClick}>
                 <Avatar sx={{ bgcolor: deepOrange[500] }}>
-                  {
-                    userName.length ? userName[0] : 'G'
-                  }
+                  {userName.length ? userName[0] : 'G'}
                 </Avatar>
               </IconButton>
             </Mobile>

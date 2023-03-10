@@ -9,11 +9,10 @@ import './Episodes.scss'
 const Episodes = () => {
   return (
     <div className='episodes-page'>
-
       <EpisodeProvider>
         <div className='episodes-page__left-panel'>
           <FilterProvider type={FilterType.Episode}>
-            <ResponsiveFilters/>
+            <ResponsiveFilters />
           </FilterProvider>
         </div>
         <div className='episodes-page__right-panel'>
