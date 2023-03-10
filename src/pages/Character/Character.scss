@@ -1,0 +1,73 @@
+@use "styles/colors.scss" as c;
+@use "styles/variables.scss" as v;
+@use "styles/mixins.scss" as m;
+
+.character-page {
+  padding: v.$padding-7;
+  &__detail {
+    @include m.flex(row, space-between, stretch);
+    gap: v.$margin-5;
+    max-height: 500px;
+
+    @media (max-width: v.$max-breakpoint-md) {
+      flex-wrap: wrap;
+      max-height: none;
+    }
+
+    & > * {
+      flex-grow: 1;
+      flex-basis: 50%;
+      
+      @media (max-width: v.$max-breakpoint-md) {
+        flex-basis: 100%;
+      }
+    }
+
+    &__img {
+      background-color: c.$white;
+      border-radius: 5px;
+      @media (max-width: v.$max-breakpoint-md) {
+        background-color: inherit;
+      }
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        border-radius: 5px;
+        @media (max-width: v.$max-breakpoint-md) {
+          height: auto;
+        }
+      }
+    }
+
+    &__info {
+      .heading {
+        font-size: 24px;
+        text-align: center;
+        border-bottom: 1px solid;
+        margin: v.$margin-2 0;
+      }
+
+      .content {
+        @include m.flex(row, flex-start, center);
+        gap: 5px;
+        &__name {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  &__episodes {
+    margin-top: v.$margin-7;
+    .heading {
+      font-size: 24px;
+      text-align: center;
+      border-bottom: 1px solid;
+      margin: v.$margin-2 0;
+    }
+    .episode-container {
+      @include m.flex(row, center, stretch)
+    }
+  }
+}

@@ -10,3 +10,13 @@
   align-items: $align-items;
   flex-wrap: $wrap;
 }
+
+@mixin clickable {
+  transition: opacity 0.2s;
+  user-select: none;
+  cursor: pointer;
+
+  &:active {
+    opacity: 0.5;
+  }
+}

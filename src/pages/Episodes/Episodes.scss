@@ -1,0 +1,49 @@
+@use "styles/colors.scss" as c;
+@use "styles/variables.scss" as v;
+@use "styles/mixins.scss" as m;
+
+.episodes-page {
+  margin: v.$margin-10 v.$margin-5;
+  @include m.flex(row, flex-start, stretch);
+  gap: 25px;
+
+  @media (max-width: v.$max-breakpoint-md) {
+    display: block;
+  }
+
+  &__list {
+    @include m.flex(row, flex-start, stretch, wrap);
+    & > * {
+      flex-basis: 33%;
+      @media (max-width: v.$max-breakpoint-xl) {
+        flex-basis: 50%;
+      }
+      @media (max-width: v.$max-breakpoint-sm) {
+        flex-basis: 100%;
+      }
+    }
+  }
+
+  &__pagination {
+    background-color: c.$white;
+    padding: v.$padding-9 0;
+    @include m.flex();
+    border-radius: v.$border-radius-5;
+  }
+
+  &__left-panel {
+    background: c.$white;
+    color: c.$black;
+    padding: 16px;
+    flex-basis: 25%;
+
+    @media (max-width: v.$max-breakpoint-md) {
+      background: none;
+      padding: 0 v.$padding-3 v.$padding-5 v.$padding-3;
+    }
+  }
+
+  &__right-panel {
+    flex-basis: 75%;
+  }
+}

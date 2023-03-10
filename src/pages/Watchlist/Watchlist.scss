@@ -1,0 +1,23 @@
+@use "styles/variables.scss" as v;
+@use "styles/mixins.scss" as m;
+
+.Watchlist-page {
+  margin: v.$margin-10 v.$margin-5;
+  &__list {
+    @include m.flex(row, flex-start, stretch, wrap);
+    & > * {
+      flex-basis: 25%;
+      @media (max-width: v.$max-breakpoint-xl) {
+        flex-basis: 50%;
+      }
+      @media (max-width: v.$max-breakpoint-sm) {
+        flex-basis: 100%;
+      }
+    }
+  }
+
+  &__empty {
+    @include m.flex();
+    font-size: 40px;
+  }
+}

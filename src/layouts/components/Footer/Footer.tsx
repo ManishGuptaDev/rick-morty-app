@@ -7,10 +7,7 @@ function Copyright() {
   return (
     <Typography variant='body2' color='text.secondary' align='center'>
       {'Copyright © '}
-      <Link to='/'>
-        Rick and Morty App
-      </Link>{' '}
-      {new Date().getFullYear()}
+      <Link to='/'>Rick and Morty App</Link> {new Date().getFullYear()}
     </Typography>
   )
 }
